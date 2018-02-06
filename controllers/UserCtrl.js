@@ -22,9 +22,9 @@ module.exports = {
 
     [
       'firstname', 'lastname', 'picture', 'birthdate', 'serviceInterests', 'gender', 'race',
-      'groupIdentification', 'computerAccess', 'preferredTimes', 'highschool', 'currentGrade',
+      'groupIdentification', 'referred', 'computerAccess', 'computerAccessLocation', 'homeworkTime', 'preferredTimes', 'highschool', 'currentGrade',
       'expectedGraduation', 'difficultAcademicSubject', 'difficultCollegeProcess', 'highestLevelEducation',
-      'hasGuidanceCounselor', 'gpa', 'collegeApplicationsText', 'commonCollegeDocs', 'academicInterestsText',
+      'hasGuidanceCounselor', 'heardFrom', 'gpa', 'collegeApplicationsText', 'commonCollegeDocs', 'academicInterestsText',
       'testScoresText', 'advancedCoursesText', 'extracurricularActivitesText'
     ].forEach(function(key){
       if (data[key]){
