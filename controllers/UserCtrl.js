@@ -21,7 +21,7 @@ module.exports = {
     // Define and iterate through keys to add to update object
 
     [
-      'firstname', 'lastname', 'picture', 'birthdate', 'serviceInterests', 'gender', 'race',
+      'firstname', 'lastname', 'nickname', 'picture', 'birthdate', 'serviceInterests', 'gender', 'race',
       'groupIdentification', 'referred', 'computerAccess', 'computerAccessLocation', 'homeworkTime', 'preferredTimes', 'highschool', 'currentGrade',
       'expectedGraduation', 'difficultAcademicSubject', 'difficultCollegeProcess', 'highestLevelEducation',
       'hasGuidanceCounselor', 'heardFrom', 'gpa', 'collegeApplicationsText', 'commonCollegeDocs', 'academicInterestsText',
