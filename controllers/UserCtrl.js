@@ -25,7 +25,7 @@ module.exports = {
       'groupIdentification', 'referred', 'computerAccess', 'computerAccessLocation', 'homeworkTime', 'preferredTimes', 'highschool', 'currentGrade',
       'expectedGraduation', 'difficultAcademicSubject', 'difficultCollegeProcess', 'highestLevelEducation',
       'hasGuidanceCounselor', 'heardFrom', 'gpa', 'collegeApplicationsText', 'commonCollegeDocs', 'academicInterestsText',
-      'testScoresText', 'advancedCoursesText', 'extracurricularActivitesText'
+      'testScoresText', 'advancedCoursesText', 'extracurricularActivitesText', 'phone', 'favoriteAcademicSubject', 'college'
     ].forEach(function(key){
       if (data[key]){
         update[key] = data[key];

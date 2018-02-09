@@ -43,7 +43,15 @@ module.exports = function(router){
 				academicInterestsText: data.academicInterestsText,
 				testScoresText: data.testScoresText,
 				advancedCoursesText: data.advancedCoursesText,
-				extracurricularActivitesText: data.extracurricularActivitesText
+				extracurricularActivitesText: data.extracurricularActivitesText,
+				nickname: data.nickname,
+				referred: data.referred,
+				computerAccessLocation: data.computerAccessLocation,
+				homeworkTime: data.homeworkTime,
+				heardFrom: data.heardFrom,
+				phone: data.phone,
+				favoriteAcademicSubject: data.favoriteAcademicSubject,
+				college: data.college
 			}
 		}, function(err, user){
 			if (err){
