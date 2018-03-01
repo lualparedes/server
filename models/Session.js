@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Message = require('./Message')
 
 var validTypes = [
-  'Math', 'College', 'Esl', 'Science','Standardizedtest'
+  'algebra', 'geometry', 'trigonometry','precalculus','calculus','general','counseling','planning','essay','biology','chemistry','sat'
 ];
 
 var sessionSchema = new mongoose.Schema({
