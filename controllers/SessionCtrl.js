@@ -178,7 +178,6 @@ module.exports = {
         userId = user._id,
         type = options.type;
 
-
     if (!userId){
       cb('Cannot create a session without a user id', null);
     } else if (user.isVolunteer){

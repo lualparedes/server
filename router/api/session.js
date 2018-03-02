@@ -6,7 +6,6 @@ module.exports = function(router){
 			var data = req.body || {},
 					sessionType = data.sessionType,
 					user = req.user;
-
 			SessionCtrl.create({
 				user: user,
 				type: sessionType

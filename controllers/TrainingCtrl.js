@@ -89,6 +89,11 @@ module.exports = {
         var hasPassed = false;
         if (percent >= PASS_THRESHOLD) {
           hasPassed = true;
+          UserCtrl.update({ userid,
+                            category: {
+                              passed: hasPassed
+                            }
+                          });
         }
         User.findOne({'_id': userid}, function(err, user){
           if (err){
