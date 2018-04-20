@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const studentQuestionSchema = new mongoose.Schema({
-  category: String,
-  subcategory: String,
+  topic: String,
+  subTopic: String,
   studentName: String,
   studentEmail: String,
   content: String,
