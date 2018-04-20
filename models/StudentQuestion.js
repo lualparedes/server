@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const studentQuestionSchema = new mongoose.Schema({
-  category: String
-  subcategory: String
-  content: String
+  category: String,
+  subcategory: String,
+  studentName: String,
+  studentEmail: String,
+  content: String,
   attachments: [String]
 });
 
