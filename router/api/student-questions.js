@@ -13,7 +13,6 @@ module.exports = function(router) {
   });
 
   router.get('/student-questions', function(req, res) {
-    console.log('get questions request');
     studentQuestionCtrl.retrieve(req.body, function(err, questions) {
       if (err) {
         res.json({err: err});

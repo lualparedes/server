@@ -6,8 +6,11 @@ module.exports = {
     let newQuestion = new StudentQuestion({
       topic: options.topic,
       subTopic: options.subTopic,
-      studentName: options.studentName,
-      studentEmail: options.studentEmail,
+      student: {
+        name: options.student.name
+        email: options.student.email
+        picture: options.student.picture
+      },
       content: options.content,
       attachments: options.attachments.toString()
     });
@@ -23,7 +26,7 @@ module.exports = {
   retrieve: function(filters, callback) {
     StudentQuestion.find(filters, function(err, questions) {
       if (err) {
-        console.log(err);
+        callback(err, null);
       } else {
         callback(null, questions);
       }
