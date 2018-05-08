@@ -7,8 +7,8 @@ module.exports = {
       topic: options.topic,
       subTopic: options.subTopic,
       student: {
-        name: options.student.name
-        email: options.student.email
+        name: options.student.name,
+        email: options.student.email,
         picture: options.student.picture
       },
       content: options.content,
