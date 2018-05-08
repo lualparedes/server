@@ -16,11 +16,9 @@ module.exports = function(router) {
     console.log('get questions request');
     studentQuestionCtrl.retrieve(req.body, function(err, questions) {
       if (err) {
-        console.log('route error');
         res.json({err: err});
       } else {
-        console.log('route success');
-        res.json({questions: 'q'});
+        res.json(questions);
       }
     });
   });

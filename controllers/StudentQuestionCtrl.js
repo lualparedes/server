@@ -23,11 +23,9 @@ module.exports = {
   retrieve: function(filters, callback) {
     StudentQuestion.find(filters, function(err, questions) {
       if (err) {
-        console.log('ctr err');
         console.log(err);
       } else {
-        console.log('ctr success');
-        callback(questions);
+        callback(null, questions);
       }
     });
   },
