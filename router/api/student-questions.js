@@ -12,7 +12,7 @@ module.exports = function(router) {
     });
   });
 
-  router.get('/student-questions', function(req, res) {
+  router.post('/student-questions/get', function(req, res) {
     studentQuestionCtrl.retrieve(req.body, function(err, questions) {
       if (err) {
         res.json({err: err});
