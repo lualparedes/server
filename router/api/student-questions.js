@@ -2,8 +2,8 @@ const studentQuestionCtrl = require('../../controllers/StudentQuestionCtrl');
 
 module.exports = function(router) {
 
-  router.post('/student-questions', function(req, res) {
-    studentQuestionCtrl.create(req.body, function(err) {
+  router.post('/student-questions/create', function(req, res) {
+    studentQuestionCtrl.create(req, function(err) {
       if (err) {
         res.json({err: err});
       } else {
