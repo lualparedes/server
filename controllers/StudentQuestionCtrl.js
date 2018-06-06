@@ -1,9 +1,6 @@
 const StudentQuestion = require('../models/StudentQuestion');
-const multer = require('multer');
 const Busboy = require('busboy');
-const inspect = require('util').inspect;
 const fs = require('fs');
-const os = require('os');
 
 
 function parse(objStr) {
