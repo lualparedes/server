@@ -6,7 +6,8 @@ module.exports = function(router) {
     studentQuestionCtrl.create(req, function(err) {
       if (err) {
         res.json({err: err});
-      } else {
+      } 
+      else {
         res.status(200).send('OK');
       }
     });
@@ -16,8 +17,20 @@ module.exports = function(router) {
     studentQuestionCtrl.retrieve(req.body, function(err, questions) {
       if (err) {
         res.json({err: err});
-      } else {
+      } 
+      else {
         res.json(questions);
+      }
+    });
+  });
+
+  router.post('/student-questions/answer', function(req, res) {
+    studentQuestionCtrl.answer(req, function(err) {
+      if (err) {
+        res.json({err: err});
+      } 
+      else {
+        res.status(200).send('OK');
       }
     });
   });
