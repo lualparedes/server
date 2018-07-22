@@ -28,12 +28,45 @@ function parse(objStr) {
   return o;
 }
 
+function deleteFile(url) {
+  // body...
+}
+
+function deleteQuestion(_id) {
+
+  console.log('deleteQuestion')
+
+  StudentQuestion.findOne(_id).then((err, question) => {
+
+    if (err) { throw err; }
+
+    else {
+
+      if (question.attachments.length > 0) {
+        question.attachments.forEach((filename) => {
+          fs.unlink(`./public/uploads/${filename}`, (err) => {
+            if (err) { throw err; }
+            console.log(`${filename} was deleted`);
+          });
+        })
+      }
+
+      StudentQuestion.remove(_id);
+    }
+  });
+}
+
+// yet to be implemented
+function sendAnswerEmail(to, content, attachments) {
+  console.log(to, content, attachments);
+}
+
 
 module.exports = {
 
-  create: function(req, callback) {
+  create: (req, callback) => {
 
-    let studentQuestionObj = {};
+    let studentQuestionObj = { attachments: [] };
 
     let busboy = new Busboy({ headers: req.headers });
 
@@ -43,7 +76,7 @@ module.exports = {
       let saveTo = `./public/uploads/__${Date.now()}__${filename}`;
       console.log('Uploading: ' + saveTo);
       file.pipe(fs.createWriteStream(saveTo));
-      studentQuestionObj['attachments'] = saveTo.slice(17);
+      studentQuestionObj['attachments'].push(saveTo.slice(17));
       
       file.on('end', function() {
         console.log('File [' + fieldname + '] Finished');
@@ -51,11 +84,11 @@ module.exports = {
     });
 
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-      console.log(`Field ${fieldname}: type: ${typeof val}`);
+      console.log(`Field ${fieldname}: val: ${val}`);
       if (fieldname === 'student') {
         studentQuestionObj[`${fieldname}`] = parse(val);
       } 
-      else {
+      else if (fieldname != 'attachments') {
         studentQuestionObj[`${fieldname}`] = val;
       }
     });
@@ -75,7 +108,7 @@ module.exports = {
     req.pipe(busboy);
   },
 
-  retrieve: function(filters, callback) {
+  retrieve: (filters, callback) => {
     StudentQuestion.find(filters, function(err, questions) {
       if (err) {
         callback(err, null);
@@ -87,7 +120,9 @@ module.exports = {
   },
 
   // yet to be implemented
-  answer: function(req, callback) { 
+  answer: (req, callback) => { 
+
+    let formFields = {};
 
     let busboy = new Busboy({ headers: req.headers });
 
@@ -96,10 +131,14 @@ module.exports = {
     });
 
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-      console.log(`Field ${fieldname}: type: ${typeof val}`);
+      console.log(`Field ${fieldname}: val: ${val}`);
+      formFields[fieldname] = val;
     });
 
     busboy.on('finish', function() {
+      console.log('finish')
+      deleteQuestion(formFields.questionId);
+      //sendAnswerEmail(formFields.userEmail, formFields.answerContent, attachments);
       callback();
     });
 
