@@ -70,7 +70,7 @@ module.exports = {
 
     let busboy = new Busboy({ headers: req.headers });
 
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
       console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
 
       let saveTo = `./public/uploads/__${Date.now()}__${filename}`;
@@ -78,12 +78,12 @@ module.exports = {
       file.pipe(fs.createWriteStream(saveTo));
       studentQuestionObj['attachments'].push(saveTo.slice(17));
       
-      file.on('end', function() {
+      file.on('end', () => {
         console.log('File [' + fieldname + '] Finished');
       });
     });
 
-    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+    busboy.on('field', (fieldname, val, fieldnameTruncated, valTruncated) => {
       console.log(`Field ${fieldname}: val: ${val}`);
       if (fieldname === 'student') {
         studentQuestionObj[`${fieldname}`] = parse(val);
@@ -93,9 +93,9 @@ module.exports = {
       }
     });
 
-    busboy.on('finish', function() {
+    busboy.on('finish', () => {
       let newQuestion = new StudentQuestion(studentQuestionObj);
-      newQuestion.save(function(err, studentQuestion) {
+      newQuestion.save((err, studentQuestion) => {
         if (err) {
           callback(err);
         } 
@@ -109,7 +109,7 @@ module.exports = {
   },
 
   retrieve: (filters, callback) => {
-    StudentQuestion.find(filters, function(err, questions) {
+    StudentQuestion.find(filters, (err, questions) => {
       if (err) {
         callback(err, null);
       } 
@@ -126,16 +126,16 @@ module.exports = {
 
     let busboy = new Busboy({ headers: req.headers });
 
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
       console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
     });
 
-    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+    busboy.on('field', (fieldname, val, fieldnameTruncated, valTruncated) => {
       console.log(`Field ${fieldname}: val: ${val}`);
       formFields[fieldname] = val;
     });
 
-    busboy.on('finish', function() {
+    busboy.on('finish', () => {
       console.log('finish')
       deleteQuestion(formFields.questionId);
       //sendAnswerEmail(formFields.userEmail, formFields.answerContent, attachments);
