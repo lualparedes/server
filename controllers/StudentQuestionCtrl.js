@@ -28,15 +28,9 @@ function parse(objStr) {
   return o;
 }
 
-function deleteFile(url) {
-  // body...
-}
-
 function deleteQuestion(_id) {
 
-  console.log('deleteQuestion')
-
-  StudentQuestion.findOne(_id).then((err, question) => {
+  StudentQuestion.findOne(_id, (err, question) => {
 
     if (err) { throw err; }
 
@@ -51,9 +45,9 @@ function deleteQuestion(_id) {
         })
       }
 
-      StudentQuestion.remove(_id);
+      question.remove();
     }
-  });
+  });  
 }
 
 // yet to be implemented
@@ -136,9 +130,8 @@ module.exports = {
     });
 
     busboy.on('finish', () => {
-      console.log('finish')
       deleteQuestion(formFields.questionId);
-      //sendAnswerEmail(formFields.userEmail, formFields.answerContent, attachments);
+      sendAnswerEmail(formFields.userEmail, formFields.answerContent, formFields.attachments);
       callback();
     });
 
