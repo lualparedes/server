@@ -54,7 +54,8 @@ module.exports = {
       console.log(`Field ${fieldname}: type: ${typeof val}`);
       if (fieldname === 'student') {
         studentQuestionObj[`${fieldname}`] = parse(val);
-      } else {
+      } 
+      else {
         studentQuestionObj[`${fieldname}`] = val;
       }
     });
@@ -64,7 +65,8 @@ module.exports = {
       newQuestion.save(function(err, studentQuestion) {
         if (err) {
           callback(err);
-        } else {
+        } 
+        else {
           callback();
         }
       });
@@ -77,13 +79,30 @@ module.exports = {
     StudentQuestion.find(filters, function(err, questions) {
       if (err) {
         callback(err, null);
-      } else {
+      } 
+      else {
         callback(null, questions);
       }
     });
   },
 
-  delete: function() {
+  // yet to be implemented
+  answer: function(req, callback) { 
 
+    let busboy = new Busboy({ headers: req.headers });
+
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+      console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+    });
+
+    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+      console.log(`Field ${fieldname}: type: ${typeof val}`);
+    });
+
+    busboy.on('finish', function() {
+      callback();
+    });
+
+    req.pipe(busboy);
   }
 }
